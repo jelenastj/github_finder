@@ -10,7 +10,8 @@ class App extends Component {
 
   state = {
     users: [],
-    loading: false
+    loading: false,
+    alert: null
   }
   // async componentDidMount(){
 
@@ -31,12 +32,14 @@ class App extends Component {
     this.setState({
       users: [],
       loading: false,
-      alert: null
+      
     })
   }
   // Set Alert
   setAlert = (msg, type) => {
-    this.setState({ alert: { msg, type}});
+    this.setState({ alert: { msg: msg, type: type}});
+
+    setTimeout(() => this.setState({alert: null}), 5000)
 
   }
 
