@@ -4,6 +4,7 @@ import Users from './components/users/Users';
 import Search from './components/users/Search';
 import axios from 'axios';
 import './App.css';
+import Alert from './components/layout/Alert'
 
 class App extends Component {
 
@@ -29,8 +30,14 @@ class App extends Component {
   clearUsers = () => {
     this.setState({
       users: [],
-      loading: false
+      loading: false,
+      alert: null
     })
+  }
+  // Set Alert
+  setAlert = (msg, type) => {
+    this.setState({ alert: { msg, type}});
+
   }
 
   render() {
@@ -39,10 +46,12 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <div className="container">
+          <Alert alert={this.state.alert}/>
           <Search
             searchUsers={this.searchUsers} c
             clearUsers={this.clearUsers} 
             showClear={users.length > 0 ? true : false}
+            setAlert={this.setAlert}
             />
           <Users
             loading={loading}
